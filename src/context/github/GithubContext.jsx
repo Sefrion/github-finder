@@ -10,6 +10,7 @@ const GITHUB_TOKEN = import.meta.env.VITE_REACT_APP_GITHUB_TOKEN;
 export const GithubProvider = ({ children }) => {
 	const initialState = {
 		users: [],
+		user: {},
 		loading: false,
 	};
 
@@ -36,6 +37,9 @@ export const GithubProvider = ({ children }) => {
 		});
 	};
 
+	// Clear users
+	const clearUsers = () => dispatch({ type: 'CLEAR_USERS' });
+
 	// Set loading
 	const setLoading = () =>
 		dispatch({
@@ -48,6 +52,7 @@ export const GithubProvider = ({ children }) => {
 				users: state.users,
 				loading: state.loading,
 				searchUsers,
+				clearUsers,
 			}}
 		>
 			{children}
